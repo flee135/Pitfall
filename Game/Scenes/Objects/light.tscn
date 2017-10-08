@@ -3,7 +3,7 @@
 [node name="DirectionalLight" type="DirectionalLight"]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-transform/local = Transform( 1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 15, 4.5 )
+transform/local = Transform( 1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 15, 4.5 )
 layers = 1
 params/enabled = true
 params/editor_only = false
