@@ -4,7 +4,7 @@ extends RigidBody
 # var a = 2
 # var b = "textvar"
 export var movement_speed = 5
-export var bomb_drop_delay = 0.5
+export var bomb_drop_delay = 1000
 
 var next_bomb_drop = 0
 
@@ -28,8 +28,8 @@ func _fixed_process(delta):
 	move_vector.y = get_linear_velocity().y * delta
 	global_translate(move_vector)
 	
-	if (Input.is_action_pressed("use_weapon") and OS.get_unix_time() > next_bomb_drop):
-		next_bomb_drop = OS.get_unix_time() + bomb_drop_delay
+	if (Input.is_action_pressed("use_weapon") and OS.get_ticks_msec() > next_bomb_drop):
+		next_bomb_drop = OS.get_ticks_msec() + bomb_drop_delay
 		var bomb_node = preload("res://Game/Scenes/Weapons/player_bomb.tscn").instance()
 		bomb_node.set_translation(Vector3(get_translation().x, bomb_node.get_node("TestCube").get_scale().y, get_translation().z))
 		get_node("/root").add_child(bomb_node)
