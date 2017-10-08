@@ -54,4 +54,5 @@ func allow_movement():
 	can_move = true
 	
 func rotate_towards_vector(dir):
-	look_at(get_translation()-dir, Vector3(0,1,0))
+	if (dir.length() > 0):
+		look_at(get_translation()-dir, Vector3(0,1,0))
