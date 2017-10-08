@@ -16,6 +16,7 @@ transform/local = Transform( 1, 0, 0, 0, -0.866026, 0.5, 0, -0.5, -0.866026, 0, 
 [node name="GameManager" type="Node" parent="."]
 
 script/script = ExtResource( 3 )
+player_spawn_position = Vector3( 0, 0, 0 )
 
 [node name="Navigation" type="Navigation" parent="."]
 

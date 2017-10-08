@@ -32,7 +32,7 @@ func _process(delta):
 	var centerX = totalX / players.size()
 	var centerZ = totalZ / players.size()
 
-	set_translation(Vector3(centerX, 15, centerZ + 4.5))
+	set_translation(Vector3(centerX, 20, centerZ + 4.5))
     
 #    float fov = 30*Mathf.Log(Vector3.Distance(new Vector3(maxX, 0, maxZ), new Vector3(minX, 0, minZ)))
 #    if (fov < 60) fov = 60

@@ -12,6 +12,7 @@
 [node name="GameManager" type="Node" parent="."]
 
 script/script = ExtResource( 2 )
+player_spawn_position = Vector3( 0, 0, 0 )
 
 [node name="DirectionalLight" parent="." instance=ExtResource( 3 )]
 
