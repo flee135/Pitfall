@@ -7,7 +7,9 @@
 
 extents = Vector3( 0.558861, 1.31087, 0.546564 )
 
-[node name="RigidBody" type="RigidBody"]
+[node name="RigidBody" type="RigidBody" groups=[
+"enemy_group",
+]]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 input/ray_pickable = true
