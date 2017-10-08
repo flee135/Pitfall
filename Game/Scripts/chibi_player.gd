@@ -34,6 +34,8 @@ func _fixed_process(delta):
 			get_node("Mesh/AnimationPlayer").play("walk")
 		elif move_vector.length() == 0 and animation_player.get_current_animation() != "idle":
 			get_node("Mesh/AnimationPlayer").play("idle")
+		# Modify rotation of rigidbody
+		rotate_towards_vector(move_vector)
 		move_vector = move_vector.normalized() * movement_speed * delta
 		move_vector.y = get_linear_velocity().y * delta
 		global_translate(move_vector)
@@ -50,4 +52,6 @@ func _fixed_process(delta):
 		
 func allow_movement():
 	can_move = true
-		
+	
+func rotate_towards_vector(dir):
+	look_at(get_translation()-dir, Vector3(0,1,0))
