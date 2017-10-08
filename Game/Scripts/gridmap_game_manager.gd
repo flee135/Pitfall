@@ -3,7 +3,10 @@ extends Node
 # class member variables go here, for example:
 # var a = 2
 # var b = "textvar"
-export var player_spawn_position = Vector3(0,0,0)
+export var multiplayer = false
+export var singleplayer_spawn_position = Vector3(0,0,0)
+export var player1_spawn_position = Vector3(-20,0,0)
+export var player2_spawn_position = Vector3(20,0,0)
 export var spawn_wait_time = 10
 export var include_basic = true
 export var include_pathfinder = true
@@ -17,12 +20,14 @@ var next_spawn = 0
 var basic_enemy_scn = preload("res://Game/Scenes/Characters/basic_enemy.tscn")
 var path_enemy_scn = preload("res://Game/Scenes/Characters/navigation_enemy.tscn")
 var player_node
+var player2_node
 
 var monsters = []
 
 func _ready():
-	var player_scn = preload("res://Game/Scenes/Characters/player.tscn")
 	var chibi_player_scn = preload("res://Game/Scenes/Characters/chibi_player.tscn")
+	var chibi_player2_scn = preload("res://Game/Scenes/Characters/chibi_player2.tscn")
+	var camera_scn = preload("res://Game/Scenes/Objects/camera.tscn")
 	
 #	# Create list of available monsters
 	if include_basic:
@@ -33,17 +38,56 @@ func _ready():
 	# Spawn players
 	player_node = chibi_player_scn.instance()
 	add_child(player_node)
-	player_node.global_translate(player_spawn_position)
+	if not multiplayer:
+		player_node.global_translate(singleplayer_spawn_position)
+		add_child(camera_scn.instance())
+	else:
+		# Player 1 view
+		var panel1 = Panel.new()
+		panel1.set_margin(MARGIN_RIGHT, 500)
+		panel1.set_margin(MARGIN_BOTTOM, 600)
+		var viewport1 = Viewport.new()
+		var camera1 = camera_scn.instance()
+		camera1.player_node = player_node
+		add_child(panel1)
+		panel1.add_child(viewport1)
+		viewport1.add_child(camera1)
+		
+		# Spawn player 2
+		player_node.global_translate(player1_spawn_position)
+		player2_node = chibi_player2_scn.instance()
+		add_child(player2_node)
+		player2_node.global_translate(player2_spawn_position)
+		var panel2 = Panel.new()
+		panel2.set_margin(MARGIN_LEFT, 524)
+		panel2.set_margin(MARGIN_RIGHT, 1024)
+		panel2.set_margin(MARGIN_BOTTOM, 600)
+		var viewport2 = Viewport.new()
+		var camera2 = camera_scn.instance()
+		camera2.player_node = player2_node
+		add_child(panel2)
+		panel2.add_child(viewport2)
+		viewport2.add_child(camera2)
+		
+		# Create background
+		var panel_back = Panel.new()
+		panel_back.set_margin(MARGIN_RIGHT, 1024)
+		panel_back.set_margin(MARGIN_BOTTOM, 600)
+		var style = StyleBoxFlat.new()
+		style.set_bg_color(Color(255,255,255))
+		panel_back.add_child(style)
+		panel_back.update()
 
-	spawn_enemies()
-	# Set a timer for futures spawns
-	var _timer = Timer.new()
-	add_child(_timer)
-
-	_timer.connect("timeout", self, "spawn_enemies")
-	_timer.set_wait_time(spawn_wait_time)
-	_timer.set_one_shot(false) # Make sure it loops
-	_timer.start()
+	if (monsters.size() > 0):
+		spawn_enemies()
+		# Set a timer for futures spawns
+		var _timer = Timer.new()
+		add_child(_timer)
+	
+		_timer.connect("timeout", self, "spawn_enemies")
+		_timer.set_wait_time(spawn_wait_time)
+		_timer.set_one_shot(false) # Make sure it loops
+		_timer.start()
 
 	set_process(true)
 
