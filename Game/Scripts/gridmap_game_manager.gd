@@ -4,6 +4,7 @@ extends Node
 # var a = 2
 # var b = "textvar"
 
+var enemy_scn
 var player_node
 var player_shape_node
 
@@ -11,6 +12,7 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	var player_scn = preload("res://Game/Scenes/Characters/player.tscn")
+	enemy_scn = preload("res://Game/Scenes/Characters/basic_enemy.tscn")
 	
 	player_node = player_scn.instance()
 	add_child(player_node)
@@ -18,9 +20,10 @@ func _ready():
 	player_shape_node = BoxShape.new()
 	player_node.add_shape(player_shape_node)
 	
-	for x in range(-10,10):
-		for z in range(-10,10):
-			print (x, " ", z, " ", get_node("/root/Node/GridMap").get_cell_item(x,0,z))
+	var enemy_node = enemy_scn.instance()
+	add_child(enemy_node)
+	enemy_node.global_translate(Vector3(5,1,5))
+	
 	set_process(true)
 
 func _process(delta):
