@@ -21,6 +21,10 @@ spawn_wait_time = 10
 include_basic = true
 include_pathfinder = true
 enemies_per_wave = 10
+map_max_z = 99
+map_min_z = -99
+map_max_x = 99
+map_min_x = -99
 
 [node name="Navigation" type="Navigation" parent="."]
 

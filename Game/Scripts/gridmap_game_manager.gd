@@ -8,11 +8,11 @@ export var spawn_wait_time = 10
 export var include_basic = true
 export var include_pathfinder = true
 export var enemies_per_wave = 10
+export var map_max_z = 99
+export var map_min_z = -99
+export var map_max_x = 99
+export var map_min_x = -99
 
-var map_max_z = 99
-var map_min_z = -map_max_z
-var map_max_x = 99
-var map_min_x = -map_max_x
 var next_spawn = 0
 var basic_enemy_scn = preload("res://Game/Scenes/Characters/basic_enemy.tscn")
 var path_enemy_scn = preload("res://Game/Scenes/Characters/navigation_enemy.tscn")
