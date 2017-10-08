@@ -46,7 +46,7 @@ func _fixed_process(delta):
 	
 	if (Input.is_action_pressed("use_bomb") and OS.get_ticks_msec() > next_bomb_drop):
 		animation_player.play("drop")
-		next_bomb_drop = OS.get_ticks_msec() + bomb_drop_delay
+		next_bomb_drop = OS.get_ticks_msec() + bomb_drop_delay*5
 		var bomb_node = player_bomb_scn.instance()
 		bomb_node.set_translation(Vector3(get_translation().x, bomb_node.get_node("TestCube").get_scale().y, get_translation().z))
 		get_node("/root/Node").add_child(bomb_node)
@@ -63,6 +63,7 @@ func _fixed_process(delta):
 		# Don't allow player to move until animation is finished.
 		
 func allow_movement():
+	next_bomb_drop = OS.get_ticks_msec() + bomb_drop_delay
 	can_move = true
 	
 func rotate_towards_vector(dir):
