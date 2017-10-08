@@ -2,11 +2,11 @@
 
 [ext_resource path="res://Game/Scripts/navigation_enemy.gd" type="Script" id=1]
 
-[sub_resource type="BoxShape" id=2]
+[sub_resource type="BoxShape" id=1]
 
 extents = Vector3( 1, 1, 1 )
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends Navigation
 
@@ -19,7 +19,7 @@ func _fixed_process(delta):
 	pass
 "
 
-[sub_resource type="FixedMaterial" id=1]
+[sub_resource type="FixedMaterial" id=3]
 
 flags/visible = true
 flags/double_sided = false
@@ -56,13 +56,15 @@ textures/glow_tc = 0
 textures/normal_tc = 0
 textures/shade_param_tc = 0
 
-[node name="RigidBody" type="RigidBody"]
+[node name="RigidBody" type="RigidBody" groups=[
+"enemy_group",
+]]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 input/ray_pickable = true
 input/capture_on_drag = false
 shape_count = 1
-shapes/0/shape = SubResource( 2 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 shapes/0/trigger = false
 collision/layers = 1
@@ -90,14 +92,14 @@ speed = 2
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 up_vector = Vector3( 0, 1, 0 )
-script/script = SubResource( 3 )
+script/script = SubResource( 2 )
 
 [node name="TestCube" type="TestCube" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 layers = 1
 geometry/visible = true
-geometry/material_override = SubResource( 1 )
+geometry/material_override = SubResource( 3 )
 geometry/cast_shadow = 1
 geometry/receive_shadows = true
 geometry/range_begin = 0.0
@@ -113,7 +115,7 @@ geometry/baked_light_tex_id = 0
 [node name="CollisionShape" type="CollisionShape" parent="."]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 

@@ -43,7 +43,9 @@ textures/glow_tc = 0
 textures/normal_tc = 0
 textures/shade_param_tc = 0
 
-[node name="RigidBody" type="RigidBody"]
+[node name="RigidBody" type="RigidBody" groups=[
+"enemy_group",
+]]
 
 _import_transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
 input/ray_pickable = true
