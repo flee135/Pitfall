@@ -24,3 +24,8 @@ func _fixed_process(delta):
 	move_vector = move_vector.normalized() * movement_speed * delta
 	move_vector.y = get_linear_velocity().y * delta
 	global_translate(move_vector)
+	
+	if (Input.is_action_pressed("use_weapon")):
+		var bomb_node = preload("res://Game/Scenes/Weapons/player_bomb.tscn").instance()
+		bomb_node.set_translation(Vector3(get_translation().x, bomb_node.get_node("TestCube").get_scale().y, get_translation().z))
+		get_node("/root").add_child(bomb_node)
