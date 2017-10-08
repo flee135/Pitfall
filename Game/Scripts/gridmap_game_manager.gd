@@ -37,5 +37,3 @@ func _process(delta):
 	if (Input.is_action_pressed("disable_collider")):
 		var pos = player_node.get_translation()
 		get_node("/root/Node/Navigation/GridMap").set_cell_item(int(round((pos.x+1)/2-1)),0,int(round((pos.z+1)/2-1)),-1)
-		print(pos.x, " ", pos.y, " ", pos.z)
-		print(int(round((pos.x)))/2," ",0," ",int(round((pos.z)))/2)

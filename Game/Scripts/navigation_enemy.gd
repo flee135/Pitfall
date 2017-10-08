@@ -26,10 +26,8 @@ func _fixed_process(delta):
 			closest_player = p
 
 	if closest_player != null:
-		print(get_translation(), " ", closest_player.get_translation())
-		path = get_node("/root/Node/Navigation").get_simple_path(
-			get_translation(),
-			closest_player.get_translation())
+		var destination = get_node("/root/Node/Navigation").get_closest_point(closest_player.get_translation())
+		path = get_node("/root/Node/Navigation").get_simple_path(get_translation(), destination)
 		if path.size() > 1:
 			var direction = (path[1] - path[0]).normalized()
 			global_translate(direction*speed*delta) 
