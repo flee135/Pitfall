@@ -47,5 +47,5 @@ func _process(delta):
 	
 func explode():
 	var pos = get_translation()
-	get_node("/root/Node/GridMap").set_cell_item(int(round((pos.x+1)/2-1)),0,int(round((pos.z+1)/2-1)),-1)
+	get_node("/root/Node/Navigation/GridMap").set_cell_item(int(round((pos.x+1)/2-1)),0,int(round((pos.z+1)/2-1)),-1)
 	queue_free()
