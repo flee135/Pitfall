@@ -41,7 +41,6 @@ func _fixed_process(delta):
 				global_translate(direction*speed*delta) 
 				look_at(get_translation()-direction, Vector3(0,1,0))
 				
-			var attack_dir = Vector3(0,0,0)
 			if get_translation().distance_to(closest_player.get_translation()) < 10:
 				can_move = false
 				animation_player.play("attack")

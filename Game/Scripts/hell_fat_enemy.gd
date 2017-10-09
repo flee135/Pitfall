@@ -9,6 +9,8 @@ export var blast_radius = 3
 var animation_player
 var path = []
 var can_move = true
+var attack_direction
+var attack_speed = 10
 
 func _ready():
 	animation_player = get_node("Mesh/AnimationPlayer")
@@ -19,32 +21,38 @@ func _fixed_process(delta):
 	if get_translation().y < -10:
 		queue_free()
 
-	var players = get_tree().get_nodes_in_group("player_group")
-	# Find nearest player
-	var closest_dist = 10000
-	var closest_player = null
-	for p in players:
-		var dist = get_translation().distance_squared_to(p.get_translation())
-		if dist < closest_dist:
-			closest_dist = dist
-			closest_player = p
-
-	if closest_player != null:
-		var destination = get_node("/root/Node/Navigation").get_closest_point(closest_player.get_translation())
-		path = get_node("/root/Node/Navigation").get_simple_path(get_translation(), destination)
-		if path.size() > 1:
-			var direction = (path[1] - path[0]).normalized()
-			global_translate(direction*speed*delta)
-			look_at(get_translation()-direction, Vector3(0,1,0))
+	if can_move:
+		var players = get_tree().get_nodes_in_group("player_group")
+		# Find nearest player
+		var closest_dist = 10000
+		var closest_player = null
+		for p in players:
+			var dist = get_translation().distance_squared_to(p.get_translation())
+			if dist < closest_dist:
+				closest_dist = dist
+				closest_player = p
+	
+		if closest_player != null:
+			var destination = get_node("/root/Node/Navigation").get_closest_point(closest_player.get_translation())
+			path = get_node("/root/Node/Navigation").get_simple_path(get_translation(), destination)
+			if path.size() > 1:
+				var direction = (path[1] - path[0]).normalized()
+				global_translate(direction*speed*delta)
+				look_at(get_translation()-direction, Vector3(0,1,0))
+				
+			if get_translation().distance_to(closest_player.get_translation()) < 10:
+				attack_direction = (closest_player.get_translation() - get_translation()).normalized()
+				attack()
+				
+	else:
+		global_translate(attack_direction*attack_speed*delta) 
 			
-		if get_translation().distance_to(closest_player.get_translation()) < 10:
-				var direction = (closest_player.get_translation() - get_translation()).normalized()
-				can_move = false
-				animation_player.play("attack")
-				animation_player.connect("finished", self, "resolve_attack")
-			
-func resolve_attack():
-	can_move = true
+func attack():
+	can_move = false
+	animation_player.play("attack")
+	animation_player.connect("finished", self, "resolve_attack", [attack_direction])
+	
+func resolve_attack(direction):
 	var pos = get_translation() 
 	var center_cell_row = int(round((pos.x+1)/2-1))
 	var center_cell_col = int(round((pos.z+1)/2-1))

@@ -8,8 +8,8 @@ export var singleplayer_spawn_position = Vector3(0,0,0)
 export var player1_spawn_position = Vector3(-20,0,0)
 export var player2_spawn_position = Vector3(20,0,0)
 export var spawn_wait_time = 10
-export var include_basic = true
-export var include_pathfinder = true
+export var include_hell_enemy = true
+export var include_fat_enemy = true
 export var enemies_per_wave = 10
 export var map_max_z = 99
 export var map_min_z = -99
@@ -30,9 +30,9 @@ func _ready():
 	var camera_scn = preload("res://Game/Scenes/Objects/camera.tscn")
 	
 #	# Create list of available monsters
-	if include_basic:
+	if include_hell_enemy:
 		monsters.append(hell_enemy_scn)
-	if include_pathfinder:
+	if include_fat_enemy:
 		monsters.append(hell_fat_enemy_scn)
 
 	# Spawn players
