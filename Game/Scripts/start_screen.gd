@@ -17,3 +17,4 @@ func _process(delta):
 	
 func play():
 	get_tree().change_scene("res://Game/Scenes/Maps/25x25_gridmap.tscn")
+	print("Play!")
