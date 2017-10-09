@@ -7,10 +7,6 @@ export var multiplayer = false
 export var singleplayer_spawn_position = Vector3(0,0,0)
 export var player1_spawn_position = Vector3(-20,0,0)
 export var player2_spawn_position = Vector3(20,0,0)
-export var spawn_wait_time = 10
-export var include_hell_enemy = true
-export var include_fat_enemy = true
-export var enemies_per_wave = 10
 export var map_max_z = 99
 export var map_min_z = -99
 export var map_max_x = 99
@@ -30,9 +26,9 @@ func _ready():
 	var camera_scn = preload("res://Game/Scenes/Objects/camera.tscn")
 	
 #	# Create list of available monsters
-	if include_hell_enemy:
+	if get_node("/root/global").include_hell_enemy:
 		monsters.append(hell_enemy_scn)
-	if include_fat_enemy:
+	if get_node("/root/global").include_fat_enemy:
 		monsters.append(hell_fat_enemy_scn)
 
 	# Spawn players
@@ -85,7 +81,7 @@ func _ready():
 		add_child(_timer)
 	
 		_timer.connect("timeout", self, "spawn_enemies")
-		_timer.set_wait_time(spawn_wait_time)
+		_timer.set_wait_time(get_node("/root/global").spawn_wait_time)
 		_timer.set_one_shot(false) # Make sure it loops
 		_timer.start()
 
@@ -93,9 +89,6 @@ func _ready():
 
 func _process(delta):
 	pass
-#	if (OS.get_unix_time() > next_spawn):
-#		next_spawn = OS.get_unix_time() + spawn_wait_time
-#		spawn_enemies()
 
 func end_game(winning_player):
 	var label = Label.new()
@@ -115,7 +108,7 @@ func end_game(winning_player):
 	_timer.start()
 	
 func spawn_enemies():
-	for i in range(0, enemies_per_wave):
+	for i in range(0, get_node("/root/global").enemies_per_wave):
 		randomize()
 		var enemy_index = randi() % monsters.size()
 		randomize()
