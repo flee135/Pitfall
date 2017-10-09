@@ -3,7 +3,7 @@
 [ext_resource path="res://Game/Scripts/start_screen.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Fonts/Metal_Mania/150pt/MetalMania-Regular.fnt" type="BitmapFont" id=2]
 [ext_resource path="res://Resources/Fonts/Open_Sans/30pt/OpenSans-Regular.fnt" type="BitmapFont" id=3]
-[ext_resource path="res://Resources/Fonts/Open_Sans/16pt/OpenSans-Regular.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://Resources/Fonts/Open_Sans/20pt/OpenSans-Regular.fnt" type="BitmapFont" id=4]
 
 [node name="UI" type="Control"]
 
@@ -64,9 +64,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 197.0
-margin/top = 98.0
+margin/top = 137.0
 margin/right = 618.0
-margin/bottom = 501.0
+margin/bottom = 463.0
 alignment = 0
 
 [node name="Title" type="Label" parent="StartScreen/CenterContainer/VBoxContainer"]
@@ -124,74 +124,9 @@ size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 211.0
 margin/right = 421.0
-margin/bottom = 228.0
+margin/bottom = 232.0
 custom_fonts/font = ExtResource( 4 )
 text = "Controls:"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = false
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 232.0
-margin/right = 421.0
-margin/bottom = 309.0
-alignment = 0
-
-[node name="P1 Controls" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 201.0
-margin/bottom = 77.0
-custom_fonts/font = ExtResource( 4 )
-text = "P1
-WASD : Move
-Space : Shoot Bomb Arrow
-Shift : Place Bomb"
-align = 1
-valign = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Spacer" type="Control" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 3
-size_flags/vertical = 3
-margin/left = 205.0
-margin/top = 0.0
-margin/right = 255.0
-margin/bottom = 77.0
-
-[node name="P2 Controls" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/HBoxContainer"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 259.0
-margin/top = 0.0
-margin/right = 421.0
-margin/bottom = 77.0
-custom_fonts/font = ExtResource( 4 )
-text = "P2
-Arrow Keys : Move
-/ : Shoot Bomb Arrow
-. : Place Bomb"
 align = 1
 valign = 1
 percent_visible = 1.0
@@ -206,9 +141,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 313.0
+margin/top = 236.0
 margin/right = 421.0
-margin/bottom = 363.0
+margin/bottom = 286.0
 
 [node name="Button" type="Button" parent="StartScreen/CenterContainer/VBoxContainer"]
 
@@ -217,9 +152,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 367.0
+margin/top = 290.0
 margin/right = 421.0
-margin/bottom = 403.0
+margin/bottom = 326.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
