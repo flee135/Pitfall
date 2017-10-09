@@ -46,6 +46,8 @@ func _process(delta):
 				current_color = "red"
 	
 func explode():
+	
+	get_node("SamplePlayer").play("explosion")
 	var pos = get_translation()
 	var center_cell_row = int(round((pos.x+1)/2-1))
 	var center_cell_col = int(round((pos.z+1)/2-1))
