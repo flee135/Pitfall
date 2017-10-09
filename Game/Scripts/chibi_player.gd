@@ -25,13 +25,13 @@ func _ready():
 func _fixed_process(delta):
 	if (can_move):
 		var move_vector = Vector3(0,0,0)
-		if (Input.is_action_pressed("move_forward")):
+		if (Input.is_action_pressed("p1_move_forward")):
 			move_vector.z = -1
-		if (Input.is_action_pressed("move_backwards")):
+		if (Input.is_action_pressed("p1_move_backwards")):
 			move_vector.z = 1
-		if (Input.is_action_pressed("move_left")):
+		if (Input.is_action_pressed("p1_move_left")):
 			move_vector.x = -1
-		if (Input.is_action_pressed("move_right")):
+		if (Input.is_action_pressed("p1_move_right")):
 			move_vector.x = 1
 		# Check if animation should play
 		if (move_vector.length() > 0 and animation_player.get_current_animation() != "walk"):
@@ -44,7 +44,7 @@ func _fixed_process(delta):
 		move_vector.y = get_linear_velocity().y * delta
 		global_translate(move_vector)
 	
-	if (Input.is_action_pressed("use_bomb") and OS.get_ticks_msec() > next_bomb_drop):
+	if (Input.is_action_pressed("p1_use_bomb") and OS.get_ticks_msec() > next_bomb_drop):
 		animation_player.play("drop")
 		next_bomb_drop = OS.get_ticks_msec() + bomb_drop_delay*5
 		var bomb_node = player_bomb_scn.instance()
@@ -54,7 +54,7 @@ func _fixed_process(delta):
 		can_move = false
 		animation_player.connect("finished", self, "allow_movement")
 	
-	if (Input.is_action_pressed("use_arrow") and OS.get_ticks_msec() > next_arrow):
+	if (Input.is_action_pressed("p1_use_arrow") and OS.get_ticks_msec() > next_arrow):
 		next_arrow = OS.get_ticks_msec() + arrow_fire_delay
 		var arrow_node = player_arrow_scn.instance()
 		arrow_node.set_translation(Vector3(get_translation().x, get_node("CollisionShape").get_translation().y, get_translation().z))
