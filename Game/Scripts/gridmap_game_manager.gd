@@ -106,6 +106,14 @@ func end_game(winning_player):
 	label.set_margin(MARGIN_BOTTOM, 414)
 	add_child(label)
 	
+	var _timer = Timer.new()
+	add_child(_timer)
+
+	_timer.connect("timeout", self, "return_main_menu")
+	_timer.set_wait_time(2)
+	_timer.set_one_shot(true) # Make sure it loops
+	_timer.start()
+	
 func spawn_enemies():
 	for i in range(0, enemies_per_wave):
 		randomize()
@@ -128,3 +136,6 @@ func spawn_enemies():
 		elif side == 3: # Right
 			var pos = randf() * (map_max_z - map_min_z) - map_max_z
 			enemy_node.global_translate(Vector3(map_min_x, 2, pos))
+			
+func return_main_menu():
+	get_tree().change_scene("res://Game/Scenes/UI/start_screen.tscn")
