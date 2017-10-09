@@ -23,6 +23,10 @@ func _ready():
 	set_fixed_process(true)
 
 func _fixed_process(delta):
+	# Check for death
+	if get_translation().y < -10:
+		get_node("/root/Node/GameManager").end_game("Player 2")
+	
 	if (can_move):
 		var move_vector = Vector3(0,0,0)
 		if (Input.is_action_pressed("p1_move_forward")):

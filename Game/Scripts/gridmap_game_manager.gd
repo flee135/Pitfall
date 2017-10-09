@@ -96,6 +96,15 @@ func _process(delta):
 #	if (OS.get_unix_time() > next_spawn):
 #		next_spawn = OS.get_unix_time() + spawn_wait_time
 #		spawn_enemies()
+
+func end_game(winning_player):
+	var label = Label.new()
+	label.set_text(winning_player + " wins!")
+	label.set_margin(MARGIN_LEFT, 462)
+	label.set_margin(MARGIN_TOP, 400)
+	label.set_margin(MARGIN_RIGHT, 568)
+	label.set_margin(MARGIN_BOTTOM, 414)
+	add_child(label)
 	
 func spawn_enemies():
 	for i in range(0, enemies_per_wave):
