@@ -59,6 +59,7 @@ func _fixed_process(delta):
 		animation_player.connect("finished", self, "allow_movement")
 	
 	if (Input.is_action_pressed("p2_use_arrow") and OS.get_ticks_msec() > next_arrow):
+		get_node("SamplePlayer").play("projectile_shoot")
 		next_arrow = OS.get_ticks_msec() + arrow_fire_delay
 		var arrow_node = player_arrow_scn.instance()
 		arrow_node.set_translation(Vector3(get_translation().x, get_node("CollisionShape").get_translation().y, get_translation().z))

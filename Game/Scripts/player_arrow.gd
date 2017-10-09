@@ -20,6 +20,7 @@ func explode(body):
 	if (body.is_in_group("player_group")):
 		return
 		
+	get_node("/root/Node/SamplePlayer").play("projectile_hit")
 	var pos = get_translation()
 	var center_cell_row = int(round((pos.x+1)/2-1))
 	var center_cell_col = int(round((pos.z+1)/2-1))
