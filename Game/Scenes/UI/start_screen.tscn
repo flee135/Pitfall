@@ -19,6 +19,20 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 1 )
 
+[node name="Panel" type="Panel" parent="."]
+
+visibility/visible = false
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+
 [node name="StartScreen" type="HBoxContainer" parent="."]
 
 anchor/right = 1
@@ -64,9 +78,9 @@ focus/stop_mouse = false
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 197.0
-margin/top = 98.0
+margin/top = 52.0
 margin/right = 618.0
-margin/bottom = 501.0
+margin/bottom = 548.0
 alignment = 0
 
 [node name="Title" type="Label" parent="StartScreen/CenterContainer/VBoxContainer"]
@@ -200,7 +214,7 @@ max_lines_visible = -1
 
 [node name="Spacer 2" type="Control" parent="StartScreen/CenterContainer/VBoxContainer"]
 
-rect/min_size = Vector2( 0, 50 )
+rect/min_size = Vector2( 0, 10 )
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -208,7 +222,212 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 313.0
 margin/right = 421.0
-margin/bottom = 363.0
+margin/bottom = 323.0
+
+[node name="Options" type="Label" parent="StartScreen/CenterContainer/VBoxContainer"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 327.0
+margin/right = 421.0
+margin/bottom = 344.0
+custom_fonts/font = ExtResource( 4 )
+text = "Options:"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EnemyOptions" type="HBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 348.0
+margin/right = 421.0
+margin/bottom = 371.0
+alignment = 0
+
+[node name="HellEnemyCheck" type="CheckBox" parent="StartScreen/CenterContainer/VBoxContainer/EnemyOptions"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 26.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="HellEnemy" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/EnemyOptions"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 30.0
+margin/top = 3.0
+margin/right = 173.0
+margin/bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "Include Hell Enemy"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Spacer" type="Control" parent="StartScreen/CenterContainer/VBoxContainer/EnemyOptions"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 3
+margin/left = 177.0
+margin/top = 0.0
+margin/right = 250.0
+margin/bottom = 23.0
+
+[node name="FatEnemyCheck" type="CheckBox" parent="StartScreen/CenterContainer/VBoxContainer/EnemyOptions"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 254.0
+margin/top = 0.0
+margin/right = 280.0
+margin/bottom = 23.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+flat = false
+align = 0
+
+[node name="FatEnemy" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/EnemyOptions"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 284.0
+margin/top = 3.0
+margin/right = 421.0
+margin/bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "Include Fat Enemy"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpawnWaitOption" type="HBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 375.0
+margin/right = 421.0
+margin/bottom = 399.0
+alignment = 1
+
+[node name="SpawnWait" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/SpawnWaitOption"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 76.0
+margin/top = 3.0
+margin/right = 282.0
+margin/bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "Time Between Waves (secs)"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpawnWaitInput" type="LineEdit" parent="StartScreen/CenterContainer/VBoxContainer/SpawnWaitOption"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 286.0
+margin/top = 0.0
+margin/right = 344.0
+margin/bottom = 24.0
+placeholder/text = "10"
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="SpawnNumOption" type="HBoxContainer" parent="StartScreen/CenterContainer/VBoxContainer"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 403.0
+margin/right = 421.0
+margin/bottom = 427.0
+alignment = 1
+
+[node name="SpawnNum" type="Label" parent="StartScreen/CenterContainer/VBoxContainer/SpawnNumOption"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 110.0
+margin/top = 3.0
+margin/right = 249.0
+margin/bottom = 20.0
+custom_fonts/font = ExtResource( 4 )
+text = "Enemies Per Wave"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SpawnNumInput" type="LineEdit" parent="StartScreen/CenterContainer/VBoxContainer/SpawnNumOption"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 253.0
+margin/top = 0.0
+margin/right = 311.0
+margin/bottom = 24.0
+placeholder/text = "2"
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = false
+caret/caret_blink_speed = 0.65
+
+[node name="Spacer 3" type="Control" parent="StartScreen/CenterContainer/VBoxContainer"]
+
+rect/min_size = Vector2( 0, 25 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 431.0
+margin/right = 421.0
+margin/bottom = 456.0
 
 [node name="Button" type="Button" parent="StartScreen/CenterContainer/VBoxContainer"]
 
@@ -217,9 +436,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 367.0
+margin/top = 460.0
 margin/right = 421.0
-margin/bottom = 403.0
+margin/bottom = 496.0
 custom_fonts/font = ExtResource( 3 )
 toggle_mode = false
 enabled_focus_mode = 2
