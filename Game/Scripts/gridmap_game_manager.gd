@@ -93,7 +93,8 @@ func _process(delta):
 func end_game(winning_player):
 	var label = Label.new()
 	label.set_text(winning_player + " wins!")
-	label.set_margin(MARGIN_LEFT, 462)
+	label.add_font_override("font", load("res://Resources/Fonts/Metal_Mania/150pt/MetalMania-Regular.fnt"))
+	label.set_margin(MARGIN_LEFT, 100)
 	label.set_margin(MARGIN_TOP, 400)
 	label.set_margin(MARGIN_RIGHT, 568)
 	label.set_margin(MARGIN_BOTTOM, 414)
@@ -103,7 +104,7 @@ func end_game(winning_player):
 	add_child(_timer)
 
 	_timer.connect("timeout", self, "return_main_menu")
-	_timer.set_wait_time(2)
+	_timer.set_wait_time(5)
 	_timer.set_one_shot(true) # Make sure it loops
 	_timer.start()
 	
