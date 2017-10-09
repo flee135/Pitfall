@@ -17,8 +17,8 @@ export var map_max_x = 99
 export var map_min_x = -99
 
 var next_spawn = 0
-var basic_enemy_scn = preload("res://Game/Scenes/Characters/basic_enemy.tscn")
-var path_enemy_scn = preload("res://Game/Scenes/Characters/navigation_enemy.tscn")
+var hell_enemy_scn = preload("res://Game/Scenes/Characters/hell_enemy.tscn")
+var hell_fat_enemy_scn = preload("res://Game/Scenes/Characters/hell_fat_enemy.tscn")
 var player_node
 var player2_node
 
@@ -31,9 +31,9 @@ func _ready():
 	
 #	# Create list of available monsters
 	if include_basic:
-		monsters.append(basic_enemy_scn)
+		monsters.append(hell_enemy_scn)
 	if include_pathfinder:
-		monsters.append(path_enemy_scn)
+		monsters.append(hell_fat_enemy_scn)
 
 	# Spawn players
 	player_node = chibi_player_scn.instance()
