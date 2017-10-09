@@ -7,10 +7,10 @@ extends RigidBody
 export var speed = 5
 export var blast_radius = 1
 
-
 var animation_player
 var path = []
 var can_move = true
+
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -41,14 +41,15 @@ func _fixed_process(delta):
 				global_translate(direction*speed*delta) 
 				look_at(get_translation()-direction, Vector3(0,1,0))
 				
+			var attack_dir = Vector3(0,0,0)
 			if get_translation().distance_to(closest_player.get_translation()) < 10:
-				var direction = (closest_player.get_translation() - get_translation()).normalized()
 				can_move = false
 				animation_player.play("attack")
-				animation_player.connect("finished", self, "resolve_attack", [direction])
+				animation_player.connect("finished", self, "resolve_attack", [closest_player])
 		
-func resolve_attack(direction):
+func resolve_attack(closest_player):
 	can_move = true
+	var direction = (closest_player.get_translation() - get_translation()).normalized()
 	var pos = get_translation() + direction*10
 	var center_cell_row = int(round((pos.x+1)/2-1))
 	var center_cell_col = int(round((pos.z+1)/2-1))
