@@ -23,6 +23,9 @@ func _fixed_process(delta):
 	if get_translation().y < -10:
 		queue_free()
 	if can_move:
+		if (animation_player.get_current_animation() != "walk"):
+			get_node("Mesh/AnimationPlayer").play("walk")
+
 		var players = get_tree().get_nodes_in_group("player_group")
 		# Find nearest player
 		var closest_dist = 10000
